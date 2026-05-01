@@ -1,0 +1,278 @@
+s1:
+  - program: standard
+    rules:
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.1.1
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:01:00:00:01:00
+        - 1
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.1.2
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:01:00:00:02:00
+        - 1
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.2.1
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:02:00:00:01:00
+        - 2
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.2.2
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:02:00:00:02:00
+        - 2
+    - table: MyIngress.ipv4_lpm
+      keys:
+        - value: 10.0.3.0/24
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:00:00:00:00:05
+        - 3
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.1.1
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:01
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.1.2
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:01
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.2.1
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:02
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.2.2
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:02
+  - program: blockSingleHost
+    rules:
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.1.1
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:01:00:00:01:00
+        - 1
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.1.2
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:01:00:00:02:00
+        - 1
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.2.1
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:02:00:00:01:00
+        - 2
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.2.2
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:02:00:00:02:00
+        - 2
+    - table: MyIngress.ipv4_lpm
+      keys:
+        - value: 10.0.3.0/24
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:00:00:00:00:05
+        - 3
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.1.1
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:01
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.1.2
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:01
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.2.1
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:02
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.2.2
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:02
+    - table: MyIngress.ipv4_exact_src
+      keys:
+        - value: X.X.X.X
+      action: MyIngress.drop
+      actionParam:
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: X.X.X.X
+      action: MyIngress.drop
+      actionParam:
+    - table: MyIngress.ipv4_lpm
+      keys:
+        - value: X.X.X.X
+      action: MyIngress.drop
+      actionParam:
+  - program: defaultDeny
+    rules:
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.1.1
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:01
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.1.2
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:01
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.2.1
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:02
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.2.2
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:02
+s2:
+  - program: standard
+    rules:
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.3.1
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:03:00:00:01:00
+        - 1
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.3.2
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:03:00:00:02:00
+        - 1
+    - table: MyIngress.ipv4_lpm
+      keys:
+        - value: 10.0.1.0/24
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:00:00:00:00:03
+        - 2
+    - table: MyIngress.ipv4_lpm
+      keys:
+        - value: 10.0.2.0/24
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:00:00:00:00:03
+        - 2
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.3.1
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:04
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.3.2
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:04
+  - program: blockSingleHost
+    rules:
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.3.1
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:03:00:00:01:00
+        - 1
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.3.2
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:03:00:00:02:00
+        - 1
+    - table: MyIngress.ipv4_lpm
+      keys:
+        - value: 10.0.1.0/24
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:00:00:00:00:03
+        - 2
+    - table: MyIngress.ipv4_lpm
+      keys:
+        - value: 10.0.2.0/24
+      action: MyIngress.ipv4_forward
+      actionParam:
+        - 00:00:00:00:00:03
+        - 2
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.3.1
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:04
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.3.2
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:04
+    - table: MyIngress.ipv4_exact_src
+      keys:
+        - value: X.X.X.X
+      action: MyIngress.drop
+      actionParam:
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: X.X.X.X
+      action: MyIngress.drop
+      actionParam:
+    - table: MyIngress.ipv4_lpm
+      keys:
+        - value: X.X.X.X
+      action: MyIngress.drop
+      actionParam:
+  - program: defaultDeny
+    rules:
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.3.1
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:04
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.3.2
+      action: MyIngress.arp_reply
+      actionParam:
+        - 00:00:00:00:00:04
