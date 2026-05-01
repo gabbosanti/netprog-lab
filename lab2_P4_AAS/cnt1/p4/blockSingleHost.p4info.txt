@@ -1,0 +1,258 @@
+pkg_info {
+  arch: "v1model"
+}
+tables {
+  preamble {
+    id: 50101297
+    name: "MyIngress.arp_exact"
+    alias: "arp_exact"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.arp.dstAddr"
+    bitwidth: 32
+    match_type: EXACT
+  }
+  action_refs {
+    id: 22921650
+  }
+  action_refs {
+    id: 25652968
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33757179
+    name: "MyIngress.ipv4_exact"
+    alias: "ipv4_exact"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: EXACT
+  }
+  action_refs {
+    id: 28792405
+  }
+  action_refs {
+    id: 25652968
+  }
+  action_refs {
+    id: 21257015
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 39741171
+    name: "MyIngress.ipv4_exact_src"
+    alias: "ipv4_exact_src"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.srcAddr"
+    bitwidth: 32
+    match_type: EXACT
+  }
+  action_refs {
+    id: 25652968
+  }
+  action_refs {
+    id: 28792405
+  }
+  action_refs {
+    id: 21257015
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 37375156
+    name: "MyIngress.ipv4_lpm"
+    alias: "ipv4_lpm"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: LPM
+  }
+  action_refs {
+    id: 28792405
+  }
+  action_refs {
+    id: 25652968
+  }
+  action_refs {
+    id: 21257015
+  }
+  size: 1024
+}
+actions {
+  preamble {
+    id: 21257015
+    name: "NoAction"
+    alias: "NoAction"
+    annotations: "@noWarn(\"unused\")"
+  }
+}
+actions {
+  preamble {
+    id: 25652968
+    name: "MyIngress.drop"
+    alias: "drop"
+  }
+}
+actions {
+  preamble {
+    id: 22921650
+    name: "MyIngress.arp_reply"
+    alias: "arp_reply"
+  }
+  params {
+    id: 1
+    name: "src_mac"
+    bitwidth: 48
+  }
+}
+actions {
+  preamble {
+    id: 28792405
+    name: "MyIngress.ipv4_forward"
+    alias: "ipv4_forward"
+  }
+  params {
+    id: 1
+    name: "dstAddr"
+    bitwidth: 48
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+registers {
+  preamble {
+    id: 378360365
+    name: "MyIngress.payload_data"
+    alias: "payload_data"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 2048
+      }
+    }
+  }
+  size: 1
+}
+registers {
+  preamble {
+    id: 376348145
+    name: "MyEgress.packet_processing_time_array"
+    alias: "packet_processing_time_array"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 48
+      }
+    }
+  }
+  size: 1000
+}
+registers {
+  preamble {
+    id: 374401820
+    name: "MyEgress.packet_enqueuing_time_array"
+    alias: "packet_enqueuing_time_array"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 1000
+}
+registers {
+  preamble {
+    id: 381256351
+    name: "MyEgress.packet_enqueuing_depth_array"
+    alias: "packet_enqueuing_depth_array"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 19
+      }
+    }
+  }
+  size: 1000
+}
+registers {
+  preamble {
+    id: 383801837
+    name: "MyEgress.packet_dequeuing_timedelta_array"
+    alias: "packet_dequeuing_timedelta_array"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 1000
+}
+registers {
+  preamble {
+    id: 369248628
+    name: "MyEgress.packet_dequeuing_depth_array"
+    alias: "packet_dequeuing_depth_array"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 19
+      }
+    }
+  }
+  size: 1000
+}
+registers {
+  preamble {
+    id: 381507548
+    name: "MyEgress.timestamp_last_seen_packet"
+    alias: "timestamp_last_seen_packet"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 48
+      }
+    }
+  }
+  size: 1
+}
+registers {
+  preamble {
+    id: 380239588
+    name: "MyEgress.last_saved_index"
+    alias: "last_saved_index"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 1
+}
+type_info {
+}

@@ -1,0 +1,44 @@
+s2:
+  program: standard
+  digest:
+  rules:
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.3.1 #h5
+      action: MyIngress.ipv4_forward
+      action_param:
+        - 00:03:00:00:01:00 #mac
+        - 1
+    - table: MyIngress.ipv4_exact
+      keys:
+        - value: 10.0.3.2 #h6
+      action: MyIngress.ipv4_forward
+      action_param:
+        - 00:03:00:00:02:00 #mac
+        - 1
+    - table: MyIngress.ipv4_lpm
+      keys:
+        - value: 10.0.1.0/24 #h1h2
+      action: MyIngress.ipv4_forward
+      action_param:
+        - 00:00:00:00:00:03 #mac
+        - 2
+    - table: MyIngress.ipv4_lpm
+      keys:
+        - value: 10.0.2.0/24 #h3h4
+      action: MyIngress.ipv4_forward
+      action_param:
+        - 00:00:00:00:00:03 #mac
+        - 2
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.3.1 #h5
+      action: MyIngress.arp_reply
+      action_param:
+        - 00:00:00:00:00:04 #mac
+    - table: MyIngress.arp_exact
+      keys:
+        - value: 10.0.3.2 #h6
+      action: MyIngress.arp_reply
+      action_param:
+        - 00:00:00:00:00:04 #mac

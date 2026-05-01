@@ -1,0 +1,18 @@
+ip address add 100.0.1.4/24 dev eth0
+ip link set eth0 address 00:00:00:00:02:02
+
+# MAC and IP of SW2
+arp -i eth0 -s 100.0.1.3 00:00:00:00:00:05
+# MAC and IP of AAS Project
+arp -i eth0 -s 100.0.1.5 00:00:00:00:00:08
+route add default gw 100.0.1.3 dev eth0
+
+echo $'nameserver 8.8.8.8\nnameserver 8.8.4.4' >> /etc/resolv.conf
+
+cp sshd_config /etc/ssh/
+echo -e "111111\n111111" | passwd root
+service ssh start
+
+sleep 5
+
+go run ./main.go -id 2 -cp 4444 -sw 100.0.1.3:50052 -config ./config/net-config.yml -topology ./config/net-topo.json -verbose

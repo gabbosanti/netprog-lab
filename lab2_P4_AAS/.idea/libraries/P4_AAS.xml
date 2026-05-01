@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="P4_AAS">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/aas_project/P4_AAS.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
