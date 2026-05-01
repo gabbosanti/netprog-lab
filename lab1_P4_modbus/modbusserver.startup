@@ -1,0 +1,7 @@
+ip link set eth0 address 00:00:0a:00:01:02
+ip addr add 200.1.1.7/24 dev eth0
+route add default gw 200.1.1.1 dev eth0
+arp -s 200.1.1.1 00:00:00:00:00:04
+python server.py &
+python server_tls.py &
+echo "modbusserver " >> /shared/startup.temp

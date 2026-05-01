@@ -1,0 +1,19 @@
+
+table_set_default ipv4_lpm drop
+table_add ipv4_lpm ipv4_forward 195.11.14.5/32 =>  00:00:00:00:00:02 2
+table_add ipv4_lpm ipv4_forward 195.11.14.6/32 =>  00:00:00:00:00:02 2
+table_add ipv4_lpm ipv4_forward 195.11.14.7/32 =>  00:00:00:00:00:02 2
+table_add ipv4_lpm ipv4_forward 200.1.1.7/32 =>  00:00:0a:00:01:02 1
+table_add ipv4_lpm ipv4_forward 200.1.1.8/32 =>  00:00:0a:00:02:02 1
+table_add ipv4_lpm ipv4_forward 200.1.1.9/32 =>  00:00:0a:00:02:02 1
+register_write keys 0 729683222
+register_write keys 1 682545830
+register_write keys 2 2885096840
+register_write keys 3 164581180
+register_write keys 4 0
+register_write keys 5 0
+register_write keys 6 0
+register_write keys 7 0
+table_add modbus_sec decipher 1 =>
+table_add modbus_sec cipher 2 =>
+EOF
