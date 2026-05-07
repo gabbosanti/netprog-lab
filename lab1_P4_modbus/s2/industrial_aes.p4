@@ -131,7 +131,7 @@ parser MyParser(packet_in packet,
                 inout standard_metadata_t standard_metadata) {
 
     state start {
-        meta.isSec = 0;
+       meta.isSec = 0;
        transition parse_ethernet;
     }
 
@@ -230,7 +230,7 @@ control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
 
-   register<bit<32>>(8) keys;
+   register <bit<32>>(8) keys;
 
     action drop() {
         mark_to_drop(standard_metadata);
@@ -310,7 +310,7 @@ control MyIngress(inout headers hdr,
 
     table modbus_sec {
         key = {
-            standard_metadata.egress_spec: exact;
+            hdr.ipv4.dstAddr: exact;
         }
         actions = {
             no_cipher;

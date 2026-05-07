@@ -1,3 +1,5 @@
+#Il client rappresenta la postazione di controllo che interroga il server.
+
 ip link set eth0 address 00:00:0a:00:01:01
 ip addr add 195.11.14.5/24 dev eth0
 route add default gw 195.11.14.1 dev eth0

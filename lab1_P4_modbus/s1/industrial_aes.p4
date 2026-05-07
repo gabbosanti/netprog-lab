@@ -8,6 +8,7 @@
 /*************************************************************************
 *********************** H E A D E R S  ***********************************
 *************************************************************************/
+
 const bit<16> TYPE_IPV4 = 0x800;
 const bit<16> IPV4_LEN = 16w20;
 
@@ -132,10 +133,10 @@ parser MyParser(packet_in packet,
 
     state start {
         meta.isSec = 0;
-       transition parse_ethernet;
+        transition parse_ethernet;
     }
 
-     state parse_ethernet {
+    state parse_ethernet {
         packet.extract(hdr.ethernet);
         transition select(hdr.ethernet.etherType) {
             TYPE_IPV4: parse_ipv4;
@@ -310,7 +311,7 @@ control MyIngress(inout headers hdr,
 
     table modbus_sec {
         key = {
-            standard_metadata.egress_spec: exact;
+            hdr.ipv4.dstAddr: exact;
         }
         actions = {
             no_cipher;
