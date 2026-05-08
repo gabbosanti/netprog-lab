@@ -118,7 +118,7 @@ args = parser.parse_args()
 
 ###### TEST OPEN CONNECTION ######
 async def connect():
-    client = AsyncModbusTcpClient("200.1.1.7", 502)
+    client = AsyncModbusTcpClient("200.1.1.8", 502)
     with open("/shared/results_conn.txt", "w") as results_file:
         for i in range(args.connect_times):
             time_start = time.time()
@@ -130,7 +130,7 @@ async def connect():
 
 
 async def write_register():
-    client = AsyncModbusTcpClient("200.1.1.7", 502, retries=0)
+    client = AsyncModbusTcpClient("200.1.1.8", 502, retries=0)
     await client.connect()
     register_id = 0
     new_value = 45
@@ -140,7 +140,7 @@ async def write_register():
 
 
 async def read_register():
-    client = AsyncModbusTcpClient("200.1.1.7", 502, retries=0)
+    client = AsyncModbusTcpClient("200.1.1.8", 502, retries=0)
     await client.connect()
     register_id = 0
     response = await client.read_holding_registers(register_id, 1, unit=0x01)
@@ -148,7 +148,7 @@ async def read_register():
     client.close()
 
 async def test_rtt_write():
-    client = AsyncModbusTcpClient("200.1.1.7", 502)
+    client = AsyncModbusTcpClient("200.1.1.8", 502)
     await client.connect()
     register_id = 0
     new_value = 45
@@ -176,7 +176,7 @@ async def test_rtt_write():
     client.close()
 
 async def test_rtt_read():
-    client = AsyncModbusTcpClient("200.1.1.7", 502)
+    client = AsyncModbusTcpClient("200.1.1.8", 502)
     await client.connect()
     register_id = 0
     new_value = 45
@@ -201,7 +201,7 @@ async def test_rtt_read():
     client.close()
 
 async def test_read():
-    client = AsyncModbusTcpClient("200.1.1.7", 502)
+    client = AsyncModbusTcpClient("200.1.1.8", 502)
     await client.connect()
     register_id = 0
     new_value = 45
@@ -219,7 +219,7 @@ async def test_read():
     client.close()
 
 async def test_write():
-    client = AsyncModbusTcpClient("200.1.1.7", 502)
+    client = AsyncModbusTcpClient("200.1.1.8", 502)
     await client.connect()
     register_id = 0
     new_value = 45

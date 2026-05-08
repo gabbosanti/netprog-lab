@@ -35,7 +35,7 @@ args = parser.parse_args()
 
 
 async def test_rtt_write():
-    client = AsyncModbusTlsClient("200.1.1.7", 5020, certfile="./cert.crt", keyfile="./key.key")
+    client = AsyncModbusTlsClient("200.1.1.8", 5020, certfile="./cert.crt", keyfile="./key.key")
     await client.connect()
     register_id = 0
     new_value = 45
@@ -53,7 +53,7 @@ async def test_rtt_write():
     client.close()
 
 async def test_rtt_read():
-    client = AsyncModbusTlsClient("200.1.1.7", 5020, certfile="./cert.crt", keyfile="./key.key")
+    client = AsyncModbusTlsClient("200.1.1.8", 5020, certfile="./cert.crt", keyfile="./key.key")
     await client.connect()
     register_id = 0
     new_value = 45
@@ -71,7 +71,7 @@ async def test_rtt_read():
     client.close()
 
 async def test_read():
-    client = AsyncModbusTlsClient("200.1.1.7", 5020, certfile="./cert.crt", keyfile="./key.key")
+    client = AsyncModbusTlsClient("200.1.1.8", 5020, certfile="./cert.crt", keyfile="./key.key")
     await client.connect()
     register_id = 0
     new_value = 45
@@ -84,7 +84,7 @@ async def test_read():
     client.close()
 
 async def test_write():
-    client = AsyncModbusTlsClient("200.1.1.7", 5020, certfile="./cert.crt", keyfile="./key.key")
+    client = AsyncModbusTlsClient("200.1.1.8", 5020, certfile="./cert.crt", keyfile="./key.key")
     await client.connect()
     register_id = 0
     new_value = 45
