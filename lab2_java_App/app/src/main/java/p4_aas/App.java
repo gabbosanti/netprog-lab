@@ -28,6 +28,8 @@ public class App {
     private final static String manual = "https://www.plattform-i40.de/IP/Redaktion/EN/Downloads/Publikation/Details_of_the_Asset_Administration_Shell_Part1_V3.pdf?__blob=publicationFile&v=1";
     private final static String version = "1.0.0";
     private final static NetworkController client = new NetworkController();
+
+    //Entry point dell'applicazione
     public static void main(String[] args) {
         waitForRegistry();
 

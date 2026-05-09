@@ -13,3 +13,6 @@ arp -s 100.0.1.2 00:00:00:00:01:01
 arp -s 100.0.1.5 00:00:00:00:00:08
 
 simple_switch_grpc --no-p4 -i 1@eth0 -i 2@eth1 -i 3@eth2 --device-id 1 -- --grpc-server-addr 100.0.1.1:50051 --cpu-port 255
+# l'opzione --no-p4 dice allo switch di partire "vuoto", senza un intelligenza iniziale
+# -i 1@eth0 -i 2@eth1 -i 3@eth2 associa le interfacce a un numero di porta
+# --grpc-server-addr 100.0.1.1:50051 apre la porta 50051 all'indirizzo 100.0.1.1

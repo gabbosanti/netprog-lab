@@ -22,9 +22,7 @@ import org.eclipse.basyx.submodel.metamodel.map.Submodel;
 
 import p4_aas.Infrastructure.ModelProvider;
 
-/**
- * Interface for creating Asset Administration Shells
- */
+//Interface for creating Asset Administration Shells
 public interface IShell {
 
     /**
